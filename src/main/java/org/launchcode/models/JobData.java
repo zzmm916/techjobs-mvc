@@ -4,9 +4,11 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -132,7 +134,7 @@ public class JobData {
         try {
 
             // Open the CSV file and set up pull out column header info and records
-            Resource resource = new ClassPathResource(DATA_FILE);
+            org.springframework.core.io.Resource resource = new ClassPathResource(DATA_FILE);
             InputStream is = resource.getInputStream();
             Reader reader = new InputStreamReader(is);
             CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(reader);
